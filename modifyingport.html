@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Analytics Portfolio</title>
+    <!-- Importing Anton for ultra-bold display and Inter for clean, readable body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Premium dark studio vignette gradient */
+            --bg-gradient: radial-gradient(circle at center, #2e2e2e 0%, #161616 100%);
+            --bg-solid: #161616;
+            --text-color: #F2F0E6;
+            --accent-color: #d1cdb8;
+            /* High-Impact Sans-Serif Fonts */
+            --font-display: 'Anton', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg-solid);
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Typography Styling - Ultra Bold & Blocky */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation Menu */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: difference;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10vh 5% 5vh 5%;
+            overflow: hidden;
+        }
+
+        /* Top Right Meta Tag */
+        .hero-meta {
+            align-self: flex-end;
+            text-align: right;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
+        .hero-meta span {
+            display: block;
+            color: var(--accent-color);
+            font-size: 0.8rem;
+        }
+
+        .hero-bg-container {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hero-bg-text {
+            font-size: clamp(6rem, 20vw, 22rem);
+            font-family: var(--font-display);
+            line-height: 0.9;
+            color: rgba(242, 240, 230, 0.04);
+            letter-spacing: 2px;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Foreground Overlapping Name Plate */
+        .hero-foreground {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-top: -4rem;
+        }
+
+        .hero-foreground .creative-tag {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 500;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .hero-foreground h1 {
+            font-size: clamp(4rem, 9vw, 8rem);
+            line-height: 1;
+            text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        /* Split Columns at the bottom */
+        .hero-bottom-columns {
+            position: relative;
+            z-index: 3;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10%;
+            align-items: flex-end;
+            margin-top: auto;
+        }
+
+        .hero-column-left, .hero-column-right {
+            font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+            font-weight: 400;
+            max-width: 450px;
+        }
+
+        .hero-column-right {
+            justify-self: flex-end;
+            text-align: right;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .hero-column-right .hero-buttons {
+            justify-content: flex-end;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border: 2px solid var(--text-color);
+            background: transparent;
+            color: var(--text-color);
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--text-color);
+            color: #161616;
+        }
+
+        /* Content Sections Base */
+        section {
+            padding: 10rem 8% 8rem 8%;
+            position: relative;
+            border-bottom: 1px solid rgba(242, 240, 230, 0.08);
+        }
+
+        .section-title {
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            margin-bottom: 5rem;
+            position: relative;
+            letter-spacing: 2px;
+        }
+
+        /* About Me */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-statement {
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            font-family: var(--font-display);
+            line-height: 1.2;
+            color: var(--accent-color);
+            text-transform: uppercase;
+        }
+
+        .about-details p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Profile Image Styles */
+        .about-image {
+            width: 100%;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border: 1px solid rgba(242, 240, 230, 0.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            filter: grayscale(100%);
+            transition: filter 0.4s ease;
+        }
+
+        .about-image img:hover {
+            filter: grayscale(0%);
+        }
+
+        /* Timelines (Education & Experience) */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .timeline-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(242, 240, 230, 0.1);
+        }
+
+        .timeline-time {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: rgba(242, 240, 230, 0.5);
+        }
+
+        /* Timeline Card Image Placeholders */
+        .timeline-image-wrapper {
+            width: 100%;
+            height: 280px; /* Elegant wide cinematic ratio */
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(242, 240, 230, 0.12);
+            background: #1e1e1e;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .timeline-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) brightness(0.7) contrast(1.1);
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .timeline-row:hover .timeline-image-wrapper img {
+            filter: grayscale(0%) brightness(0.95) contrast(1);
+            transform: scale(1.04);
+        }
+
+        .timeline-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .timeline-content h4 {
+            font-family: var(--font-body);
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .course-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+            list-style: none;
+        }
+
+        .course-tags li {
+            border: 1px solid rgba(242, 240, 230, 0.2);
+            padding: 0.4rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 30px;
+        }
+
+        /* Skills Layout */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 4rem;
+        }
+
+        .skills-col h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            font-family: var(--font-body);
+            font-weight: 700;
+            border-bottom: 2px solid rgba(242, 240, 230, 0.1);
+            padding-bottom: 1rem;
+        }
+
+        .skills-list {
+            list-style: none;
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            line-height: 1.3;
+        }
+
+        .skills-list li {
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .skills-list li:hover {
+            padding-left: 15px;
+            color: var(--accent-color);
+        }
+
+        /* Projects Showcase Style */
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10rem;
+        }
+
+        .project-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .project-card:nth-child(even) {
+            direction: rtl;
+        }
+
+        .project-card:nth-child(even) .project-meta-box {
+            direction: ltr;
+        }
+
+        .project-index {
+            font-family: var(--font-display);
+            font-size: clamp(8rem, 15vw, 14rem);
+            line-height: 0.8;
+            color: rgba(242, 240, 230, 0.06);
+        }
+
+        /* Project Photo Placeholders */
+        .project-image-wrapper {
+            width: 100%;
+            height: 280px; /* Elegant wide cinematic ratio */
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(242, 240, 230, 0.12);
+            background: #1e1e1e;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) brightness(0.7) contrast(1.1);
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .project-card:hover .project-image-wrapper img {
+            filter: grayscale(0%) brightness(0.95) contrast(1);
+            transform: scale(1.04);
+        }
+
+        .project-meta-box h3 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .project-tools {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .project-description {
+            font-size: 1.15rem;
+            font-weight: 400;
+        }
+
+        /* View Project Link Effect */
+        .project-link {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--text-color);
+            padding-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
+        }
+
+        .project-link svg {
+            transition: transform 0.3s ease;
+        }
+
+        .project-link:hover svg {
+            transform: translateX(5px);
+        }
+
+        /* Certifications Grid Layout */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .cert-card {
+            border: 2px solid rgba(242, 240, 230, 0.1);
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            background: rgba(255, 255, 255, 0.01);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .cert-card:hover {
+            border-color: var(--text-color);
+            background: var(--text-color);
+            color: var(--bg-solid);
+            transform: translateY(-5px);
+        }
+
+        .cert-card h3 {
+            font-size: 2rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Certificate Image Placeholders */
+        .cert-image-wrapper {
+            width: 100%;
+            height: 180px; /* Elegant horizontal document format */
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(242, 240, 230, 0.12);
+            background: #1e1e1e;
+            position: relative;
+        }
+
+        .cert-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) brightness(0.6);
+            transition: all 0.5s ease;
+        }
+
+        .cert-card:hover .cert-image-wrapper img {
+            filter: grayscale(0%) brightness(0.9);
+            transform: scale(1.03);
+        }
+
+        .cert-actions {
+            margin-top: auto;
+            padding-top: 1.5rem;
+        }
+
+        .cert-action-btn {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: inherit; /* Inherits background flip from card hover */
+            border-bottom: 2px solid currentColor;
+            padding-bottom: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Contact Me Section - Modified for Static Output */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 800px;
+        }
+
+        .contact-methods {
+            list-style: none;
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.1;
+        }
+
+        .contact-methods li {
+            margin-bottom: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-methods span.contact-label {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .contact-methods a {
+            display: inline-block;
+        }
+
+        .contact-methods a:hover {
+            color: var(--accent-color);
+            transform: translateX(10px);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .hero-bottom-columns, .about-layout, .timeline-row, .project-card, .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .hero-bottom-columns {
+                align-items: flex-start;
+            }
+            .hero-column-right {
+                justify-self: flex-start;
+                text-align: left;
+            }
+            .hero-column-right .hero-buttons {
+                justify-content: flex-start;
+            }
+            .project-card:nth-child(even) {
+                direction: ltr;
+            }
+            nav .nav-links {
+                display: none;
+            }
+            section {
+                padding: 8rem 5% 5rem 5%;
+            }
+            .hero-bg-text {
+                font-size: 25vw;
+            }
+            .about-image {
+                max-width: 500px;
+            }
+            .timeline-image-wrapper {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <nav>
+        <div class="nav-logo">REINER EUSEBIO</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero / Showcase Area -->
+    <section id="home" class="hero">
+        <div class="hero-meta">
+            JUNE / 2026
+            <span>BUSINESS PORTFOLIO</span>
+        </div>
+
+        <div class="hero-bg-container">
+            <div class="hero-bg-text">BUSINESS<br>ANALYST</div>
+        </div>
+
+        <div class="hero-foreground">
+            <div class="creative-tag">Information Technology</div>
+            <h1>Reiner Eusebio</h1>
+        </div>
+
+        <div class="hero-bottom-columns">
+            <div class="hero-column-left">
+                <p>Transforming data into actionable insights through analytical thinking, business intelligence, and technology-driven solutions.</p>
+            </div>
+            <div class="hero-column-right">
+                <p>Specializing in Business Analytics</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn">View Projects</a>
+                    <a href="#contact" class="btn">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about">
+        <h2 class="section-title">The Profile</h2>
+        <div class="about-layout">
+            
+            <div class="about-statement">
+                Transforming raw data into strategic execution.
+            </div>
+            
+            <div class="about-details">
+                <p>As a Business Analytics major, I specialize in finding the signal through the noise. I build predictive models and interactive dashboards that transform unorganized data layers into strategic clarity.  My passion for data-driven forecasting extends beyond the database.</p>
+                <p>Just as I analyze track data, pacing, and team strategies to predict motorsport race outcomes, I apply the same rigorous, fact-based logic to business environments. I use concrete data to uncover hidden bottlenecks, optimize performance, and project future successes. Driven by strong problem-solving skills and technical adaptability, I thrive where complex technical systems meet real-world execution.</p>
+            </div>
+
+            <!-- Profile Image Container -->
+            <div class="about-image">
+                <img src="vsps1JL_1645.jpg" alt="Reiner Eusebio Profile Photo">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline">
+            <div class="timeline-row">
+                <div class="timeline-time">22-26</div>
+                <div class="timeline-content">
+                    <div class="timeline-image-wrapper">
+                        <img src="Bulacan_State_University,_Malolos,_Bulacan.jpg" alt="Bulacan State University Placeholder">
+                    </div>
+                    <h3>Bachelor of Science in Information Technology</h3>
+                    <h4>Bulacan State University</h4>
+                    <p>Specialized curriculum emphasizing engineering architectures, systems optimization, and continuous mathematical processing models.</p>
+                    <ul class="course-tags">
+                        <li>Business Analytics</li>
+                        <li>Database Management</li>
+                        <li>Systems Analysis and Design</li>
+                        <li>Data Mining</li>
+                        <li>Web Development</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            <div class="timeline-row">
+                <div class="timeline-time">500H</div>
+                <div class="timeline-content">
+                    <div class="timeline-image-wrapper">
+                        <img src="2021-02-02-085219677-Accenture-partners-with-Salesforce-on-sustainability.spot.jpg" alt="Salesforce Internship Showcase Placeholder">
+                    </div>
+                    <h3>IT / Salesforce Internship Track</h3>
+                    <h4>Accenture</h4>
+                    <p>Immersed heavily in corporate information architectures. Successfully achieved cross-functional training landmarks, adapting data schemas, reporting engines, and pipeline operations to optimize large-scale processing systems.</p>
+                    
+                    <div style="margin-top: 2rem;">
+                        <a href="https://www.salesforce.com/trailblazer/utb6oooerbnx1rhnjg" target="_blank" class="btn" rel="noopener noreferrer">
+                            <span>Verify Salesforce Profile</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Expertise</h2>
+        <div class="skills-grid">
+            <div class="skills-col">
+                <h3>Languages</h3>
+                <ul class="skills-list">
+                    <li>Python</li>
+                    <li>SQL</li>
+                    <li>C++</li>
+                    <li>Java</li>
+                </ul>
+            </div>
+            <div class="skills-col">
+                <h3>Analytics & DB</h3>
+                <ul class="skills-list">
+                    <li>WEKA</li>
+                    <li>MS Excel</li>
+                    <li>MariaDB</li>
+                    <li>MySQL</li>
+                </ul>
+            </div>
+            <div class="skills-col">
+                <h3>Web Systems</h3>
+                <ul class="skills-list">
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+            <div class="skills-col">
+                <h3>Core Capabilities</h3>
+                <ul class="skills-list">
+                    <li>Critical Logic</li>
+                    <li>Problem Solving</li>
+                    <li>System Design</li>
+                    <li>DB Developer</li>
+                    <li>Machine Learning</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Case Studies</h2>
+        <div class="project-list">
+            
+            <div class="project-card">
+                <div class="project-index">01</div>
+                <div class="project-meta-box">
+                    <div class="project-image-wrapper">
+                        <img src="Screenshot 2026-06-21 162339.png" alt="Shopee Dashboard Analytics">
+                    </div>
+                    <h3>Shopee Dashboard Analytics</h3>
+                    <span class="project-tools">MS Excel</span>
+                    <p class="project-description">Engineered deep operational dashboards mapping multi-tier pipeline performance. Consolidated fragmented sales tables to compute predictive growth metrics and fluid KPI tracking frameworks.</p>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <a href="Shopee Dashboard Project.mp4" target="_blank" class="project-link" rel="noopener noreferrer">
+                            <span>View Project</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-index">02</div>
+                <div class="project-meta-box">
+                    <div class="project-image-wrapper">
+                        <img src="Screenshot 2026-06-21 163044.png" alt="Gold Gear Awardee Outcome Likelihood Detector">
+                    </div>
+                    <h3>Gold Gear Awardee Outcome Likelihood Detector</h3>
+                    <span class="project-tools">HTML5 / CSS3 / JavaScript / MySQL / WEKA</span>
+                    <p class="project-description">The system was deployed as a web-based platform
+which enables faculty and students to input data and generate real-time predictions and
+view visual representations through the analytics dashboard.</p>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <a href="https://drive.google.com/file/d/1lXq3s4hdTv7P5ShDBnyat9T6crlSwBz2/view?usp=sharing" target="_blank" class="project-link" rel="noopener noreferrer">
+                            <span>View Project</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <h2 class="section-title">Credentials</h2>
+        <div class="cert-grid">
+            
+            <div class="cert-card">
+                <div>
+                    <div class="cert-image-wrapper">
+                        <img src="https://plus.unsplash.com/premium_photo-1681488275460-9d0a45509a5f?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="iLEAP Course On Intellectual Property" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e1e1e/d1cdb8?text=Certificate+Mockup'">
+                    </div>
+                    <h3>iLEAP Course On Intellectual Property</h3>
+                </div>
+                <div class="cert-actions">
+                    <a href="Certificate_of_Completion.pdf" target="_blank" class="cert-action-btn" rel="noopener noreferrer">
+                        <span>View Certificate</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-card">
+                <div>
+                    <div class="cert-image-wrapper">
+                        <img src="https://plus.unsplash.com/premium_photo-1733328013343-e5ee77acaf05?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="CISCO Security and Connectivity Support" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e1e1e/d1cdb8?text=Certificate+Mockup'">
+                    </div>
+                    <h3>CISCO Security and Connectivity Support</h3>
+                </div>
+                <div class="cert-actions">
+                    <a href="Security_and_Connectivity_Support_certificate_eusebio-reiner-bsit-gmail-com_0b799a8e-9164-4a98-8693-a20b7c0a7d65.pdf" target="_blank" class="cert-action-btn" rel="noopener noreferrer">
+                        <span>View Certificate</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-card">
+                <div>
+                    <div class="cert-image-wrapper">
+                        <img src="https://plus.unsplash.com/premium_photo-1661764393655-1dbffee8c0ce?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="CISCO Cyber Threat Management" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e1e1e/d1cdb8?text=Certificate+Mockup'">
+                    </div>
+                    <h3>CISCO Cyber Threat Management</h3>
+                </div>
+                <div class="cert-actions">
+                    <a href="Cyber_Threat_Management_certificate_eusebio-reiner-bsit-gmail-com_2791c232-c411-4673-bb20-46f6db887b6c.pdf" target="_blank" class="cert-action-btn" rel="noopener noreferrer">
+                        <span>View Certificate</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="cert-card">
+                <div>
+                    <div class="cert-image-wrapper">
+                        <img src="https://plus.unsplash.com/premium_photo-1661877737564-3dfd7282efcb?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="CISCO Introduction to Cybersecurity" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e1e1e/d1cdb8?text=Certificate+Mockup'">
+                    </div>
+                    <h3>CISCO Introduction to Cybersecurity</h3>
+                </div>
+                <div class="cert-actions">
+                    <a href="Introduction_to_Cybersecurity_certificate_eusebio-reiner-bsit-gmail-com_f2d7244a-9a5a-451e-9e4c-dab87b9665db.pdf" target="_blank" class="cert-action-btn" rel="noopener noreferrer">
+                        <span>View Certificate</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section - Form Removed for Static Hosting -->
+    <section id="contact">
+        <h2 class="section-title">Connection</h2>
+        <div class="contact-layout">
+            <div>
+                <p style="font-size: 1.2rem; margin-bottom: 3rem; color: var(--accent-color); font-family: var(--font-body); max-width: 600px;">
+                    Feel free to reach out directly. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                </p>
+                <ul class="contact-methods">
+                    <li>
+                        <span class="contact-label">Email Address</span>
+                        <a href="mailto:reiner.kirsten.eusebio@gmail.com">reiner.kirsten.eusebio@gmail.com</a>
+                    </li>
+                    <li>
+                        <span class="contact-label">LinkedIn Profile</span>
+                        <a href="https://linkedin.com/in/reiner-eusebio-a9336235a" target="_blank" rel="noopener noreferrer">Reiner Kirsten Eusebio</a>
+                    </li>
+                    <li>
+                        <span class="contact-label">Facebook Profile</span>
+                        <a href="https://www.facebook.com/reinereusebio/" target="_blank" rel="noopener noreferrer">Reiner Eusebio</a>
+                    </li>
+                    <li>
+                        <span class="contact-label">Phone Number</span>
+                        <a href="tel:63+ 976 252 9438">63+ 976 252 9438</a>
+                    </li>
+                    <li>
+                        <span class="contact-label">Resume</span>
+                        <a href="RESUME.pdf" target="_blank" rel="noopener noreferrer">VIEW RESUME</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
